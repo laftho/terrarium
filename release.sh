@@ -7,7 +7,7 @@ token=`gpg -d ~/secrets/github/releaser.gpg`
 
 curl -u $username:$token https://api.github.com/user
 
-RELASE_ID=`curl -u $username:$token -d "{ \"tag_name\": \"${tag}\", \"target_commitish\": \"master\", \"name\": \"${tag}\", \"body\": \"Terrarium release\" }" -H "Content-Type: application/json" -X POST https://api.github.com/repos/laftho/terrarium/releases | jq -r '.id'`
+RELASE_ID=$(curl -u $username:$token -d "{ \"tag_name\": \"${tag}\", \"target_commitish\": \"master\", \"name\": \"${tag}\", \"body\": \"Terrarium release\" }" -H "Content-Type: application/json" -X POST https://api.github.com/repos/laftho/terrarium/releases | jq -r '.id')
 
 echo "Relase ID: ${RELEASE_ID}"
 
